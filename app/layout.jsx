@@ -1,4 +1,4 @@
-import '@/app/globals.css'
+import './globals.css'
 import { Layout } from '@/components/dom/Layout'
 
 export const metadata = {
