@@ -36,7 +36,7 @@ export default function Home() {
       if (!visible) return
       const index = Number(visible.target.dataset.index)
       if (Number.isFinite(index)) setActive(index)
-    }, { threshold:[0.45,0.65,0.8] })
+    }, { rootMargin:'-20% 0px -55% 0px', threshold:[0,.2,.5] })
     nodes.forEach((node) => observer.observe(node))
     return () => observer.disconnect()
   }, [])
@@ -66,36 +66,40 @@ export default function Home() {
   return (
     <>
       <style>{`
-        html{scroll-snap-type:y mandatory;background:#05090c}
+        html{scroll-snap-type:none!important;background:#05090c;scroll-behavior:smooth}
         body{background:#05090c!important;color:#fff!important;transition:none!important}
-        .jpg-progress{position:fixed;z-index:250;left:0;top:0;height:3px;background:#f5c842;width:${((active + 1) / slides.length) * 100}%;transition:width .28s ease}
-        .jpg-head{position:fixed;z-index:240;left:0;right:0;top:0;padding:calc(10px + env(safe-area-inset-top)) 12px 8px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
-        .jpg-brand,.jpg-count{border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(18px);border-radius:999px;min-height:36px;display:flex;align-items:center;box-shadow:0 12px 32px rgba(0,0,0,.18)}.jpg-brand{background:rgba(5,9,12,.76);color:#fff}.jpg-count{background:#f5c842!important;color:#071018!important;flex:0 0 auto;white-space:nowrap}
-        .jpg-brand{gap:7px;padding:0 12px 0 7px;font-size:9px;font-weight:950;letter-spacing:.09em}
-        .jpg-brand i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#f5c842;color:#071018;font-size:16px;font-style:normal}
-        .jpg-count{padding:0 12px;font-size:9px;font-weight:900;gap:4px}.jpg-count b{font-size:13px}.jpg-count span{opacity:.45}
-        .jpg-story{position:relative;background:#05090c}
-        .jpg-slide{--tone:#f3eee4;position:relative;min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;display:grid;grid-template-rows:minmax(0,53svh) minmax(0,47svh);background:#05090c;overflow:hidden}
-        .jpg-media{position:relative;display:grid;place-items:center;background:#05090c;padding-top:calc(48px + env(safe-area-inset-top));overflow:hidden}
-        .jpg-media img{display:block;width:100%;height:100%;object-fit:contain;image-rendering:auto}
-        .jpg-media:after{content:'';position:absolute;inset:auto 0 0;height:15%;background:linear-gradient(transparent,rgba(5,9,12,.28));pointer-events:none}
-        .jpg-label{position:absolute;z-index:3;left:12px;bottom:12px;display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:rgba(5,9,12,.78);backdrop-filter:blur(12px);font-size:8px;font-weight:950;letter-spacing:.12em}
+        .jpg-progress{position:fixed;z-index:250;left:0;top:0;height:3px;background:#f5c842;width:${((active + 1) / slides.length) * 100}%;transition:width .2s ease}
+        .jpg-head{position:fixed;z-index:240;left:0;right:0;top:0;padding:calc(8px + env(safe-area-inset-top)) 10px 7px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+        .jpg-brand,.jpg-count{min-height:34px;display:flex;align-items:center;border-radius:999px;border:1px solid rgba(255,255,255,.1)}
+        .jpg-brand{gap:7px;padding:0 11px 0 6px;background:rgba(5,9,12,.94);font-size:8px;font-weight:950;letter-spacing:.09em}
+        .jpg-brand i{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:#f5c842;color:#071018;font-size:15px;font-style:normal}
+        .jpg-count{padding:0 11px;background:#f5c842;color:#071018;font-size:8px;font-weight:900;gap:4px;white-space:nowrap}.jpg-count b{font-size:12px}.jpg-count span{opacity:.45}
+        .jpg-story{position:relative;background:#05090c;padding-top:calc(49px + env(safe-area-inset-top))}
+        .jpg-slide{--tone:#f3eee4;position:relative;padding:0 8px 20px;background:#05090c;content-visibility:auto;contain-intrinsic-size:720px}
+        .jpg-frame{overflow:hidden;border-radius:20px;background:#0a1014;border:1px solid rgba(255,255,255,.08)}
+        .jpg-media{position:relative;width:100%;background:#05090c}
+        .jpg-media img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;image-rendering:auto}
+        .jpg-label{position:absolute;z-index:3;left:10px;top:10px;display:flex;align-items:center;gap:7px;padding:6px 9px;border-radius:999px;background:rgba(5,9,12,.9);font-size:7px;font-weight:950;letter-spacing:.11em}
         .jpg-label b{color:#f5c842}.jpg-label span{opacity:.72}
-        .jpg-copy{position:relative;z-index:4;margin:7px 8px calc(8px + env(safe-area-inset-bottom));padding:18px 17px 16px;border-radius:28px;background:var(--tone);color:#071018;display:flex;flex-direction:column;justify-content:center;padding-bottom:56px;box-shadow:0 -10px 55px rgba(0,0,0,.16)}
-        .jpg-copy small{font-size:8px;font-weight:950;letter-spacing:.16em;opacity:.55}
-        .jpg-copy h1,.jpg-copy h2{font-size:clamp(38px,11.6vw,58px);line-height:.86;letter-spacing:-.065em;text-transform:uppercase;margin:7px 0 10px;font-weight:1000}
-        .jpg-copy p{font-size:13px;line-height:1.42;font-weight:650;margin:0;max-width:430px}
-        .jpg-points{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px;padding-right:45px}
-        .jpg-points span{border:1.3px solid currentColor;border-radius:999px;padding:6px 8px;font-size:7px;font-weight:950;letter-spacing:.07em;white-space:nowrap}
-        .jpg-next{position:absolute;z-index:9!important;display:grid!important;right:14px;bottom:14px;width:39px;height:39px;border:0;border-radius:50%;background:#071018;color:#fff;font-size:16px;font-weight:900;display:grid;place-items:center}
-        .project-end{position:relative;min-height:100svh;scroll-snap-align:start;background:#f3eee4;color:#071018;padding:calc(74px + env(safe-area-inset-top)) 14px calc(20px + env(safe-area-inset-bottom));display:flex;align-items:center}
-        .end-card{width:100%;max-width:760px;margin:auto}.end-kicker{font-size:9px;font-weight:1000;letter-spacing:.16em}.end-card h2{font-size:clamp(50px,15vw,92px);line-height:.8;letter-spacing:-.075em;text-transform:uppercase;margin:11px 0 22px}.end-card h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px currentColor}
-        .end-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}.end-metrics div{border:1.4px solid currentColor;border-radius:19px;padding:13px;min-height:92px;display:flex;flex-direction:column;justify-content:space-between}.end-metrics b{font-size:28px;letter-spacing:-.06em}.end-metrics span{font-size:8px;font-weight:950;letter-spacing:.08em}
-        .end-note{font-size:10px;line-height:1.48;opacity:.58;margin:0 0 15px}.end-actions{display:grid;grid-template-columns:1fr auto;gap:8px}.end-actions button{min-height:52px;border:0;border-radius:18px;font-size:9px;font-weight:1000;letter-spacing:.1em}.enable-3d{background:#071018;color:#fff;padding:0 18px}.replay{width:52px;background:#f5c842;color:#071018}
-        .three-d-stage{position:relative;min-height:100svh;scroll-snap-align:start;background:linear-gradient(180deg,rgba(243,238,228,.06),rgba(243,238,228,.72) 78%,#f3eee4);color:#071018;padding:calc(74px + env(safe-area-inset-top)) 12px calc(14px + env(safe-area-inset-bottom));display:flex;align-items:flex-end}
-        .three-d-panel{width:100%;max-width:520px;margin:0 auto;border-radius:28px;padding:17px;background:rgba(243,238,228,.92);backdrop-filter:blur(22px);box-shadow:0 26px 70px rgba(0,0,0,.18)}
-        .three-d-panel>small{font-size:8px;font-weight:1000;letter-spacing:.15em}.three-d-panel h3{font-size:36px;line-height:.9;letter-spacing:-.06em;text-transform:uppercase;margin:7px 0 12px}.mode-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:9px}.mode-grid button,.floor-grid button{border:1.2px solid currentColor;background:transparent;color:inherit;border-radius:15px;min-height:43px;font-size:7px;font-weight:950;letter-spacing:.06em}.mode-grid button.active,.floor-grid button.active{background:#071018;color:#fff;border-color:#071018}.floor-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.three-d-close{width:100%;margin-top:9px;min-height:43px;border:0;border-radius:15px;background:#f5c842;color:#071018;font-size:8px;font-weight:1000;letter-spacing:.09em}
-        @media(min-width:760px){.jpg-slide{grid-template-columns:minmax(0,1.45fr) minmax(360px,.55fr);grid-template-rows:1fr;padding:74px 18px 18px;gap:10px}.jpg-media{padding:0;border-radius:28px}.jpg-copy{margin:0;border-radius:28px;padding:28px}.jpg-copy h1,.jpg-copy h2{font-size:64px}.jpg-copy p{font-size:16px}.jpg-label{left:16px;bottom:16px}.jpg-first-note{top:16px;right:16px}.end-metrics{grid-template-columns:repeat(4,1fr)}}
+        .jpg-copy{position:relative;background:var(--tone);color:#071018;padding:15px 15px 14px}
+        .jpg-copy small{font-size:7px;font-weight:950;letter-spacing:.15em;opacity:.52}
+        .jpg-title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:5px 0 8px}
+        .jpg-copy h1,.jpg-copy h2{font-size:clamp(34px,10.4vw,52px);line-height:.86;letter-spacing:-.06em;text-transform:uppercase;margin:0;font-weight:1000}
+        .jpg-number{font-size:10px;font-weight:1000;letter-spacing:.08em;opacity:.35;white-space:nowrap;padding-bottom:3px}
+        .jpg-copy p{font-size:12px;line-height:1.42;font-weight:650;margin:0;max-width:480px}
+        .jpg-points{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+        .jpg-points span{border:1.2px solid currentColor;border-radius:999px;padding:5px 7px;font-size:6.5px;font-weight:950;letter-spacing:.065em;white-space:nowrap}
+        .jpg-next-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid rgba(7,16,24,.16)}
+        .jpg-next-row span{font-size:7px;font-weight:900;letter-spacing:.1em;opacity:.5}
+        .jpg-next{width:34px;height:34px;border:0;border-radius:50%;background:#071018;color:#fff;font-size:14px;font-weight:900;display:grid;place-items:center}
+        .project-end{position:relative;background:#f3eee4;color:#071018;padding:calc(76px + env(safe-area-inset-top)) 14px calc(24px + env(safe-area-inset-bottom));min-height:100svh;display:flex;align-items:center}
+        .end-card{width:100%;max-width:760px;margin:auto}.end-kicker{font-size:8px;font-weight:1000;letter-spacing:.16em}.end-card h2{font-size:clamp(48px,14vw,88px);line-height:.8;letter-spacing:-.075em;text-transform:uppercase;margin:10px 0 20px}.end-card h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.4px currentColor}
+        .end-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:14px}.end-metrics div{border:1.3px solid currentColor;border-radius:17px;padding:12px;min-height:84px;display:flex;flex-direction:column;justify-content:space-between}.end-metrics b{font-size:26px;letter-spacing:-.06em}.end-metrics span{font-size:7px;font-weight:950;letter-spacing:.08em}
+        .end-note{font-size:9px;line-height:1.48;opacity:.58;margin:0 0 14px}.end-actions{display:grid;grid-template-columns:1fr auto;gap:7px}.end-actions button{min-height:49px;border:0;border-radius:16px;font-size:8px;font-weight:1000;letter-spacing:.09em}.enable-3d{background:#071018;color:#fff;padding:0 16px}.replay{width:49px;background:#f5c842;color:#071018}
+        .three-d-stage{position:relative;min-height:100svh;background:linear-gradient(180deg,rgba(243,238,228,.03),rgba(243,238,228,.72) 78%,#f3eee4);color:#071018;padding:calc(74px + env(safe-area-inset-top)) 12px calc(14px + env(safe-area-inset-bottom));display:flex;align-items:flex-end}
+        .three-d-panel{width:100%;max-width:520px;margin:0 auto;border-radius:24px;padding:15px;background:#f3eee4;box-shadow:0 20px 50px rgba(0,0,0,.16)}
+        .three-d-panel>small{font-size:7px;font-weight:1000;letter-spacing:.14em}.three-d-panel h3{font-size:34px;line-height:.9;letter-spacing:-.06em;text-transform:uppercase;margin:6px 0 11px}.mode-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:8px}.mode-grid button,.floor-grid button{border:1.1px solid currentColor;background:transparent;color:inherit;border-radius:13px;min-height:40px;font-size:6.5px;font-weight:950;letter-spacing:.05em}.mode-grid button.active,.floor-grid button.active{background:#071018;color:#fff;border-color:#071018}.floor-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.three-d-close{width:100%;margin-top:8px;min-height:40px;border:0;border-radius:13px;background:#f5c842;color:#071018;font-size:7px;font-weight:1000;letter-spacing:.08em}
+        @media(min-width:760px){.jpg-story{padding-top:74px}.jpg-slide{max-width:1180px;margin:0 auto;padding:0 18px 28px}.jpg-frame{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(340px,.45fr);border-radius:28px}.jpg-media{display:grid;place-items:center}.jpg-copy{display:flex;flex-direction:column;justify-content:center;padding:28px}.jpg-copy h1,.jpg-copy h2{font-size:62px}.jpg-copy p{font-size:15px}.jpg-points span{font-size:7px;padding:6px 8px}.end-metrics{grid-template-columns:repeat(4,1fr)}}
         @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.jpg-progress{transition:none}}
       `}</style>
 
@@ -108,24 +112,30 @@ export default function Home() {
       <main className="jpg-story">
         {slides.map((slide, index) => (
           <section id={`story-${index + 1}`} data-index={index} className="jpg-slide" key={slide.file} style={{'--tone':slide.tone}}>
-            <div className="jpg-media">
-              <img
-                src={asset(slide.file)}
-                alt={slide.title}
-                loading={index === 0 ? 'eager' : 'lazy'}
-                fetchPriority={index === 0 ? 'high' : 'auto'}
-                decoding="async"
-              />
-              <div className="jpg-label"><b>{String(index + 1).padStart(2,'0')}</b><span>{slide.tag}</span></div>
-            </div>
-            <div className="jpg-copy">
-              <div>
-                <small>{slide.tag} · WHAT TO SEE</small>
-                {index === 0 ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
+            <div className="jpg-frame">
+              <div className="jpg-media">
+                <img
+                  src={asset(slide.file)}
+                  alt={slide.title}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={index === 0 ? 'high' : 'auto'}
+                  decoding="async"
+                />
+                <div className="jpg-label"><b>{String(index + 1).padStart(2,'0')}</b><span>{slide.tag}</span></div>
+              </div>
+              <div className="jpg-copy">
+                <small>{slide.tag} · YANG PERLU DILIHAT</small>
+                <div className="jpg-title-row">
+                  {index === 0 ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
+                  <span className="jpg-number">{String(index + 1).padStart(2,'0')} / 12</span>
+                </div>
                 <p>{slide.lead}</p>
                 <div className="jpg-points">{slide.points.map((point) => <span key={point}>{point}</span>)}</div>
+                <div className="jpg-next-row">
+                  <span>{index < slides.length - 1 ? 'GAMBAR BERIKUTNYA' : 'RINGKASAN PROYEK'}</span>
+                  <button className="jpg-next" onClick={() => jumpTo(index < slides.length - 1 ? `story-${index + 2}` : 'project-end')} aria-label="Lanjut">↓</button>
+                </div>
               </div>
-              <button className="jpg-next" onClick={() => jumpTo(index < slides.length - 1 ? `story-${index + 2}` : 'project-end')} aria-label="Lanjut">↓</button>
             </div>
           </section>
         ))}
