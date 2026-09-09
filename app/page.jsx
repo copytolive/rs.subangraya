@@ -3,18 +3,18 @@
 import { useEffect, useState } from 'react'
 
 const research = [
-  ['1JsUSXszzS7cZnSOI-RNjld2TgZNB9U9E', 'EXTERIOR', 'Arrival', 'Massa, canopy, drop-off dan identitas pertama.'],
-  ['12vRJWURamhe6jNQ53txWG_XdJjcAb3UD', 'EXTERIOR', 'Frontage', 'Keterbacaan pintu masuk dari pendekatan utama.'],
-  ['1kac-vTTfwsk83Z5DG6yukVKxGZ_CvzzI', 'PUBLIC', 'Main lobby', 'First impression, orientasi dan hospitality.'],
-  ['1p-uL8NcxO-yvFfCeU6BEevxLRpmJJzWm', 'OUTPATIENT', 'Polyclinic', 'Registrasi, distribusi pasien dan waiting flow.'],
-  ['1BHcW3jWcmdmRBuPvr8M_VV81k1ym4KTX', 'INPATIENT', 'Nurse station', 'Visibility, response time dan kontrol koridor.'],
-  ['1TJ6I2QirbBphtIiunJdkvgYz66krQfoH', 'PATIENT', 'Patient room', 'Daylight, family support, privacy dan recovery.'],
-  ['19Qg1sgP1OqZSKTDuaEBLccj8xEsNkq29', 'CRITICAL', 'ICU + HCU', 'Monitoring, clinical visibility dan infection control.'],
-  ['1hU2P7TJCTpi5-zB_bRNvF1tDyAF1ffxl', 'SURGERY', 'Operating theatre', 'Restricted core, cleanability dan team movement.'],
-  ['1r2a1GAr1zUZMhSQ60r0Ep7BQCi3eFLlr', 'DIAGNOSTIC', 'Imaging', 'Preparation, privacy dan equipment clearances.'],
-  ['16jT4xUgZq1hwyU6Df5YNvemre-KSuNFN', 'PHARMACY', 'Pharmacy', 'Queue clarity, dispensing dan counter workflow.'],
-  ['1L5dr2g9OZjMf4AUshcFhAcsQT6CLoUfp', 'EXECUTIVE', 'Executive lounge', 'Premium reception, privacy dan family experience.'],
-  ['1hwf8B6EhwCUp-QFekiwEjXJbTB9ffNUi', 'AMENITY', 'Public lounge', 'Family dwell time dan non-clinical relief.'],
+  { id:'1JsUSXszzS7cZnSOI-RNjld2TgZNB9U9E', tag:'EXTERIOR', title:'Arrival', lead:'Kesan pertama harus langsung terasa jelas, tenang, dan meyakinkan.', points:['DROP-OFF JELAS','CANOPY TEDUH','IDENTITAS KUAT'], tone:'#f5c842' },
+  { id:'12vRJWURamhe6jNQ53txWG_XdJjcAb3UD', tag:'EXTERIOR', title:'Frontage', lead:'Fasad harus mudah dikenali sejak kendaraan mulai mendekat.', points:['SIGNAGE TERBACA','ARAH MASUK JELAS','SKALA RAMAH'], tone:'#f3eee4' },
+  { id:'1kac-vTTfwsk83Z5DG6yukVKxGZ_CvzzI', tag:'PUBLIC', title:'Main Lobby', lead:'Begitu masuk, pasien langsung tahu ke mana harus bergerak.', points:['RESEPSIONIS TERLIHAT','WAITING NYAMAN','ORIENTASI MUDAH'], tone:'#6adbd2' },
+  { id:'1p-uL8NcxO-yvFfCeU6BEevxLRpmJJzWm', tag:'OUTPATIENT', title:'Polyclinic', lead:'Registrasi dan ruang tunggu dibuat sederhana agar alur pasien tetap ringan.', points:['DAFTAR CEPAT','ANTRIAN TERBACA','KLINIK DEKAT'], tone:'#f5c842' },
+  { id:'1BHcW3jWcmdmRBuPvr8M_VV81k1ym4KTX', tag:'INPATIENT', title:'Nurse Station', lead:'Perawat dapat melihat koridor dan merespons pasien tanpa banyak blind spot.', points:['VISIBILITAS','RESPON CEPAT','KORIDOR TENANG'], tone:'#f3eee4' },
+  { id:'1TJ6I2QirbBphtIiunJdkvgYz66krQfoH', tag:'PATIENT', title:'Patient Room', lead:'Ruang rawat terasa terang, privat, dan tetap nyaman untuk keluarga.', points:['DAYLIGHT','PRIVASI','FAMILY SUPPORT'], tone:'#6adbd2' },
+  { id:'19Qg1sgP1OqZSKTDuaEBLccj8xEsNkq29', tag:'CRITICAL', title:'ICU + HCU', lead:'Pengawasan intensif dibuat dekat, terlihat, dan efisien untuk tim klinis.', points:['MONITORING','AKSES CEPAT','INFECTION CONTROL'], tone:'#ff754f' },
+  { id:'1hU2P7TJCTpi5-zB_bRNvF1tDyAF1ffxl', tag:'SURGERY', title:'Operating Theatre', lead:'Zona operasi ringkas, bersih, dan terkendali dari masuk sampai recovery.', points:['STERIL','ALUR TIM','RECOVERY DEKAT'], tone:'#6adbd2' },
+  { id:'1r2a1GAr1zUZMhSQ60r0Ep7BQCi3eFLlr', tag:'DIAGNOSTIC', title:'Imaging', lead:'Pasien mudah masuk, siap diperiksa, lalu kembali ke alur utama.', points:['PRIVASI','CLEARANCE ALAT','AKSES MUDAH'], tone:'#f5c842' },
+  { id:'16jT4xUgZq1hwyU6Df5YNvemre-KSuNFN', tag:'PHARMACY', title:'Pharmacy', lead:'Ambil obat menjadi tahap akhir yang cepat, terbaca, dan tidak membingungkan.', points:['COUNTER JELAS','ANTRIAN RINGKAS','DISPENSING EFISIEN'], tone:'#f3eee4' },
+  { id:'1L5dr2g9OZjMf4AUshcFhAcsQT6CLoUfp', tag:'EXECUTIVE', title:'Executive Lounge', lead:'Layanan premium terasa privat tanpa terputus dari sistem rumah sakit.', points:['PRIVASI','HOSPITALITY','FAMILY COMFORT'], tone:'#6adbd2' },
+  { id:'1hwf8B6EhwCUp-QFekiwEjXJbTB9ffNUi', tag:'AMENITY', title:'Public Lounge', lead:'Area non-klinis memberi keluarga ruang istirahat di tengah perjalanan perawatan.', points:['DUDUK NYAMAN','MAKAN RINGAN','RELIEF SPACE'], tone:'#f5c842' },
 ]
 
 const chapters = [
@@ -31,7 +31,7 @@ const floorData = [
 ]
 
 const journeySteps = ['ARRIVE', 'REGISTER', 'DIAGNOSE', 'TREAT', 'RECOVER', 'DISCHARGE']
-const driveImage = (id, width = 2000) => `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`
+const driveImage = (id, width = 2200) => `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`
 
 function emit(name, detail) {
   window.dispatchEvent(new CustomEvent(name, { detail }))
@@ -43,16 +43,12 @@ export default function Home() {
   const [activeFloor, setActiveFloor] = useState(0)
   const [progress, setProgress] = useState(0)
   const [chapterIndex, setChapterIndex] = useState(0)
-  const [viewer, setViewer] = useState(null)
-  const [zoomed, setZoomed] = useState(false)
 
   const changeMode = (value) => { setMode(value); emit('hospital-mode', value) }
   const chooseRoute = (value) => { setActiveRoute(value); changeMode('site'); emit('hospital-route', value) }
   const chooseFloor = (index) => { setActiveFloor(index); changeMode('explode'); emit('hospital-floor', index) }
   const playJourney = () => { changeMode('journey'); emit('hospital-journey', Date.now()) }
   const jumpTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  const openViewer = (id, tag, title, desc, index) => { setZoomed(false); setViewer({ id, tag, title, desc, index }) }
-  const stepViewer = (index) => { const [id, tag, title, desc] = research[index]; setZoomed(false); setViewer({ id, tag, title, desc, index }) }
 
   useEffect(() => {
     const onScroll = () => {
@@ -78,25 +74,32 @@ export default function Home() {
     return () => observers.forEach((observer) => observer?.disconnect())
   }, [])
 
-  useEffect(() => {
-    document.body.style.overflow = viewer ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [viewer])
-
   return (
     <>
       <style>{`
-        .research-image{height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:16/9;background:#0b1821!important}
-        .research-image img{object-fit:contain!important;image-rendering:auto;transform:translateZ(0)}
-        .research-card{contain:content}
-        .viewer-media{background:#050b10!important;display:flex;align-items:center;justify-content:center;touch-action:pan-x pan-y pinch-zoom;-webkit-overflow-scrolling:touch}
-        .viewer-media img{object-fit:contain!important;width:100%;height:100%;image-rendering:auto;transition:width .25s ease,height .25s ease;user-select:none;-webkit-user-drag:none}
-        .viewer-media.zoomed{display:block;overflow:auto}
-        .viewer-media.zoomed img{width:185%;height:auto;max-width:none;min-height:100%;object-fit:contain!important}
-        .viewer-actions{display:flex!important;gap:7px!important}
-        .viewer-actions button{font-size:15px!important;font-weight:900}
-        .viewer-hd{position:absolute;left:20px;bottom:18px;z-index:4;padding:6px 8px;border-radius:999px;background:rgba(7,16,24,.78);color:#fff;font-size:8px;font-weight:950;letter-spacing:.12em;pointer-events:none}
-        @media(max-width:759px){.research-card{flex-basis:92vw!important}.research-copy{padding-top:13px!important}.viewer{padding-left:6px!important;padding-right:6px!important}.viewer-media{border-radius:20px!important}.viewer-copy h3{font-size:26px!important}}
+        .visual-intro{background:#071018;color:#fff;display:flex;align-items:flex-end;padding-bottom:calc(var(--dock) + 30px)}
+        .visual-intro .research-header{padding:18px 16px 6px}
+        .visual-intro .research-header h2{font-size:clamp(52px,16vw,78px);line-height:.82;margin:10px 0 14px}
+        .visual-intro .research-header p{max-width:360px;color:rgba(255,255,255,.66);font-size:13px;line-height:1.5}
+        .visual-subslide{--slide:#f3eee4;position:relative;min-height:100svh;scroll-snap-align:start;background:#071018;color:#fff;padding:58px 0 calc(16px + env(safe-area-inset-bottom));display:grid;grid-template-rows:minmax(0,54svh) minmax(0,1fr);overflow:hidden}
+        .visual-sub-media{position:relative;display:grid;place-items:center;background:#08141d;overflow:hidden}
+        .visual-sub-media:after{content:'';position:absolute;inset:auto 0 0;height:28%;background:linear-gradient(transparent,rgba(7,16,24,.35));pointer-events:none}
+        .visual-sub-media img{width:100%;height:100%;object-fit:contain;display:block;image-rendering:auto}
+        .visual-index{position:absolute;z-index:4;left:14px;top:12px;display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;background:rgba(7,16,24,.78);backdrop-filter:blur(14px);font-size:9px;font-weight:950;letter-spacing:.12em}
+        .visual-index b{color:#f5c842}
+        .visual-hint{position:absolute;z-index:4;right:14px;bottom:12px;padding:7px 9px;border-radius:999px;background:rgba(255,255,255,.88);color:#071018;font-size:8px;font-weight:950;letter-spacing:.1em}
+        .visual-sub-copy{position:relative;z-index:3;margin:8px 10px 0;border-radius:30px;padding:17px 17px 16px;background:var(--slide);color:#071018;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 24px 60px rgba(0,0,0,.2)}
+        .visual-sub-copy small{font-size:8px;font-weight:1000;letter-spacing:.16em;opacity:.56}
+        .visual-sub-copy h3{font-size:clamp(34px,10vw,50px);line-height:.9;letter-spacing:-.055em;margin:6px 0 9px;text-transform:uppercase}
+        .visual-sub-copy p{font-size:13px;line-height:1.42;margin:0;max-width:420px;font-weight:650}
+        .visual-points{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px;padding-right:48px}
+        .visual-points span{border:1.4px solid currentColor;border-radius:999px;padding:7px 9px;font-size:7px;font-weight:1000;letter-spacing:.08em;white-space:nowrap}
+        .visual-next{position:absolute;right:15px;bottom:15px;width:38px;height:38px;border-radius:50%;border:0;background:#071018;color:#fff;font-size:16px;font-weight:900;box-shadow:0 10px 24px rgba(7,16,24,.2)}
+        .visual-progress{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-top:15px}
+        .visual-progress i{height:3px;border-radius:99px;background:rgba(255,255,255,.18)}
+        .visual-progress i:first-child{background:#f5c842}
+        .mode-dock.visual-hidden{transform:translateY(130%);opacity:0;pointer-events:none}
+        @media(min-width:760px){.visual-subslide{grid-template-columns:minmax(0,1.35fr) minmax(360px,.65fr);grid-template-rows:1fr;padding:74px 20px 20px;gap:12px}.visual-sub-copy{margin:0;border-radius:34px;padding:28px}.visual-sub-copy h3{font-size:64px}.visual-sub-copy p{font-size:16px}.visual-sub-media{border-radius:34px}.visual-next{width:48px;height:48px}}
       `}</style>
 
       <div className="scroll-progress" style={{ width: `${progress}%` }} />
@@ -137,10 +140,33 @@ export default function Home() {
           <div className="bottom-sheet orange-sheet"><span className="micro">ONE CONTINUOUS PATH</span><h2>FROM<br/>ARRIVAL TO<br/><em>RECOVERY.</em></h2><div className="journey-row">{journeySteps.map((step,index) => <div key={step}><b>{String(index + 1).padStart(2,'0')}</b><span>{step}</span></div>)}</div><button className="primary-action dark-action" onClick={playJourney}><span>PLAY 3D JOURNEY</span><b>▶</b></button></div>
         </section>
 
-        <section id="research" className="chapter research-chapter">
-          <div className="research-header"><span className="micro">05 · VISUAL RESEARCH</span><h2>12 DESIGN<br/><em>FRAMES.</em></h2><p>Swipe horizontal. Gambar tampil rasio asli 16:9. Tap untuk membuka viewer HD internal.</p></div>
-          <div className="research-rail">{research.map(([id,tag,title,desc], index) => <button className="research-card" key={id} onClick={() => openViewer(id,tag,title,desc,index)}><div className="research-image"><img loading={index < 2 ? 'eager' : 'lazy'} decoding="async" src={driveImage(id, 2000)} alt={title} onError={(e) => { e.currentTarget.style.opacity = '0' }} /><span>{String(index + 1).padStart(2,'0')}</span><i>HD VIEW</i></div><div className="research-copy"><small>{tag}</small><h3>{title}</h3><p>{desc}</p></div></button>)}</div>
+        <section id="research" className="chapter visual-intro">
+          <div className="research-header">
+            <span className="micro">05 · VISUAL STORY</span>
+            <h2>12 IMAGES.<br/><em>12 SIMPLE STORIES.</em></h2>
+            <p>Setiap gambar berdiri sendiri. Satu tampilan, satu pesan, tiga hal penting yang langsung bisa dipahami.</p>
+            <div className="visual-progress">{research.map((item,index) => <i key={item.id} style={index === 0 ? { background:'#f5c842' } : undefined} />)}</div>
+          </div>
         </section>
+
+        {research.map((item, index) => (
+          <section id={`frame-${index + 1}`} className="visual-subslide" key={item.id} style={{ '--slide': item.tone }}>
+            <div className="visual-sub-media">
+              <img loading={index < 2 ? 'eager' : 'lazy'} decoding="async" src={driveImage(item.id, 2200)} alt={item.title} />
+              <div className="visual-index"><b>05.{String(index + 1).padStart(2,'0')}</b><span>/ 12 · {item.tag}</span></div>
+              <div className="visual-hint">HD IMAGE</div>
+            </div>
+            <div className="visual-sub-copy">
+              <div>
+                <small>{item.tag}</small>
+                <h3>{item.title}</h3>
+                <p>{item.lead}</p>
+                <div className="visual-points">{item.points.map((point) => <span key={point}>{point}</span>)}</div>
+              </div>
+              <button className="visual-next" onClick={() => jumpTo(index === research.length - 1 ? 'roadmap' : `frame-${index + 2}`)} aria-label="Lanjut ke gambar berikutnya">↓</button>
+            </div>
+          </section>
+        ))}
 
         <section id="roadmap" className="chapter stage-chapter roadmap-chapter">
           <div className="stage-caption"><span>06</span><b>DELIVERY</b></div>
@@ -148,13 +174,7 @@ export default function Home() {
         </section>
       </main>
 
-      <nav className="mode-dock" aria-label="Kontrol 3D">{[['overview','◉','VIEW'],['explode','≡','FLOORS'],['site','↗','FLOW'],['journey','▶','JOURNEY']].map(([value,icon,label]) => <button key={value} className={mode === value ? 'active' : ''} onClick={() => changeMode(value)}><b>{icon}</b><span>{label}</span></button>)}</nav>
-
-      {viewer && <div className="viewer" role="dialog" aria-modal="true" aria-label={viewer.title}>
-        <div className="viewer-top"><div><small>{String(viewer.index + 1).padStart(2,'0')} / 12</small><b>{viewer.tag}</b></div><div className="viewer-actions"><button onClick={() => setZoomed((v) => !v)} aria-label={zoomed ? 'Perkecil gambar' : 'Perbesar gambar'}>{zoomed ? '−' : '+'}</button><button onClick={() => setViewer(null)} aria-label="Tutup viewer">×</button></div></div>
-        <div className={`viewer-media ${zoomed ? 'zoomed' : ''}`}><img src={driveImage(viewer.id, 2400)} alt={viewer.title} /><span className="viewer-hd">HD · {zoomed ? 'ZOOM 185%' : 'FIT'}</span></div>
-        <div className="viewer-copy"><span>{viewer.tag}</span><h3>{viewer.title}</h3><p>{viewer.desc}</p><div className="viewer-nav"><button disabled={viewer.index === 0} onClick={() => stepViewer(viewer.index - 1)}>← PREV</button><button disabled={viewer.index === research.length - 1} onClick={() => stepViewer(viewer.index + 1)}>NEXT →</button></div></div>
-      </div>}
+      <nav className={`mode-dock ${chapterIndex === 5 ? 'visual-hidden' : ''}`} aria-label="Kontrol 3D">{[['overview','◉','VIEW'],['explode','≡','FLOORS'],['site','↗','FLOW'],['journey','▶','JOURNEY']].map(([value,icon,label]) => <button key={value} className={mode === value ? 'active' : ''} onClick={() => changeMode(value)}><b>{icon}</b><span>{label}</span></button>)}</nav>
     </>
   )
 }
