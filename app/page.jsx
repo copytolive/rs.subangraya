@@ -1,6 +1,7 @@
 import KalkulatorInvestasi from './KalkulatorInvestasi'
 import KalkulatorLahan from './KalkulatorLahan'
 import VisualGaleri from './VisualGaleri'
+import PotensiSubang from './PotensiSubang'
 import { PenjagaUrl, TombolScroll } from './ScrollTanpaHash'
 
 const asset = (file) => `/rs.subangraya/visual/${file}`
@@ -37,7 +38,7 @@ export default function Home() {
 
         <header id="atas" className="hero"><div className="hero-bg"/><div className="wrap hero-in"><div className="eyebrow">Presentasi Investor · RS Subang Raya</div><h1>Rumah sakit untuk <em>pertumbuhan Subang.</em></h1><p>Ringkasan investor berbasis angka proyek terkendali, kapasitas layanan, dan potensi pertumbuhan Subang.</p><div className="facts"><div className="fact"><b>66</b><span>POSISI PASIEN</span></div><div className="fact"><b>6</b><span>KAMAR OPERASI</span></div><div className="fact"><b>&gt;2.000</b><span>TARGET KUNJUNGAN / HARI</span></div><div className="fact"><b>Rp861,1 M</b><span>CAPEX DASAR</span></div><div className="fact"><b>0%</b><span>UTANG BANK · SKENARIO UTAMA</span></div></div></div></header>
 
-        <section id="subang" className="sec light"><div className="wrap"><div className="head"><h2>Potensi <em>Subang</em></h2><p>Basis pasar ditopang populasi, tenaga kesehatan, tenaga kerja, serta pertumbuhan koridor Rebana–Patimban.</p></div><div className="market"><article><b>1.675.519</b><span>PENDUDUK KABUPATEN SUBANG</span><small>Basis indikator Kemenkes · sumber populasi BPS 2024</small></article><article><b>629</b><span>DOKTER UMUM + SPESIALIS</span><small>477 umum + 152 spesialis · Kemenkes</small></article><article><b>1.842</b><span>PERAWAT</span><small>Indikator SDM kesehatan Kemenkes</small></article><article><b>1.232</b><span>BIDAN</span><small>Indikator SDM kesehatan Kemenkes</small></article><article><b>284.521</b><span>BURUH / KARYAWAN / PEGAWAI</span><small>Pasar tenaga kerja Subang · BPS 2024</small></article><article><b>10 + 1 + 40</b><span>RS UMUM + RS BERSALIN + PUSKESMAS</span><small>Fasilitas kesehatan Subang · BPS 2024</small></article></div><p className="sources"><strong>Rebana + Patimban:</strong> pengembangan kawasan industri dan logistik terintegrasi Pelabuhan Patimban. · Sumber publik: <span className="src">BPS Kabupaten Subang Dalam Angka 2025</span> · <span className="src">Kemenkes SISDMK</span> · <span className="src">Pemkab Subang — Rebana/Patimban</span>.</p></div></section>
+        <PotensiSubang />
 
         <section id="operasi" className="sec dark"><div className="wrap"><div className="head"><h2>Kapasitas <em>layanan</em></h2><p>Angka inti yang mempengaruhi volume dan keputusan investasi.</p></div><div className="ops"><div className="opfacts"><div><b>56 + 10</b><span>RAWAT INAP + ICU = 66 POSISI</span></div><div><b>6 / 8 / 10</b><span>OR / PRAOPERASI / PACU</span></div><div><b>371</b><span>BASIS RUANG TEKNIS</span></div><div><b>≥658</b><span>MINIMUM TITIK DATA</span></div></div><div className="cap">{kapasitas.map(([nama,butuh,mampu,status]) => <div className="caprow" key={nama}><b>{nama}</b><span>{butuh} · {mampu}</span><strong>{status}</strong></div>)}</div></div></div></section>
 
