@@ -23,10 +23,10 @@ export default function KalkulatorInvestasi() {
   const kenaikan = nilaiAkhir - investasi
   return (
     <>
-      <a className="tombol-kalkulator" href="#kalkulator-investasi">HITUNG INVESTASI</a>
+      <button type="button" className="tombol-kalkulator" onClick={() => { document.getElementById('kalkulator-investasi')?.scrollIntoView({ behavior: 'smooth' }); window.history.replaceState(null, '', '/rs.subangraya/') }}>HITUNG INVESTASI</button>
       <section id="kalkulator-investasi" className="ki">
         <style>{`
-          .tombol-kalkulator{position:fixed;right:12px;bottom:12px;z-index:95;background:#f4c842;color:#060a0d!important;border-radius:999px;padding:9px 13px;font:900 8px/1 Inter,system-ui;letter-spacing:.09em;text-decoration:none}
+          .tombol-kalkulator{position:fixed;right:12px;bottom:12px;z-index:95;background:#f4c842;color:#060a0d!important;border:0;border-radius:999px;padding:9px 13px;font:900 8px/1 Inter,system-ui;letter-spacing:.09em;cursor:pointer}
           .ki{position:relative;z-index:4;background:#060a0d;color:#fff;padding:28px clamp(14px,3vw,36px);font-family:Inter,system-ui,-apple-system,sans-serif}
           .ki-in{max-width:1260px;margin:auto}.ki-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:13px}.ki-head h2{font-size:clamp(27px,3.3vw,42px);line-height:.95;letter-spacing:-.05em;text-transform:uppercase;margin:0}.ki-head h2 em{font-style:normal;color:#f4c842}.ki-head p{margin:0;max-width:390px;color:#8f9aa0;font-size:9px;line-height:1.45;text-align:right}
           .ki-box{border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:13px;background:#0a1014}.ki-control{display:grid;grid-template-columns:155px 1fr 125px;gap:13px;align-items:center}.ki-label span,.ki-card span,.ki-base span{display:block;font-size:7px;font-weight:900;letter-spacing:.07em;color:#8f9aa0}.ki-label b{display:block;font-size:23px;letter-spacing:-.045em;margin-top:3px}.ki-range{width:100%;accent-color:#f4c842;cursor:pointer}.ki-input{width:100%;background:#060a0d;color:#fff;border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:9px 10px;font-size:15px;font-weight:900;outline:none}.ki-input:focus{border-color:#f4c842}
