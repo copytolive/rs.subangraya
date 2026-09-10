@@ -179,11 +179,11 @@ export default function Home() {
                 <p className="kaki">Total CAPEX masih berupa anggaran indikatif. CAPEX tersertifikasi menunggu T10: pengukuran kuantitas rinci, harga terverifikasi, penawaran harga, dan rekonsiliasi QS/Keuangan.</p>
               </div>
               <div className="kartu-ekonomi">
-                <div><span>KEBUTUHAN KAS DASAR · DI LUAR TANAH</span><b>Rp811,1 M</b><small>Tanah tetap diperlakukan sebagai kontribusi aset dan nilai ekonomi.</small></div>
+                <div><span>KEBUTUHAN KAS DASAR · DI LUAR TANAH</span><b>Rp811,1 M</b><small>Nilai terkendali dari model perencanaan; tidak dipakai sebagai pembagi saham.</small></div>
                 <div><span>PERKIRAAN KONSTRUKSI FISIK</span><b>Rp475,1 M</b><small>Angka pembanding untuk perencanaan.</small></div>
                 <div><span>PERALATAN MEDIS TAHAP AWAL</span><b>Rp95,0 M</b><small>Anggaran indikatif; T07–T09 masih terbuka.</small></div>
                 <div><span>MODAL KERJA</span><b>Rp76,8 M</b><small>Cadangan anggaran untuk kebutuhan awal operasi.</small></div>
-                <div><span>IRR EKUITAS PROYEK DASAR</span><b>20,50%</b><small>Ilustratif dan bergantung pada kelipatan valuasi saat keluar.</small></div>
+                <div><span>NILAI EKUITAS KELUAR · TAHUN 10</span><b>Rp2,439 T</b><small>Output model terkendali pada skenario 0% utang; tetap bergantung pada kelipatan nilai keluar yang tercatat.</small></div>
                 <div><span>UTANG BANK · SKENARIO UTAMA</span><b>Rp0</b><small>DSCR bank tidak berlaku pada struktur utama tanpa pinjaman bank.</small></div>
               </div>
             </div>
@@ -196,15 +196,15 @@ export default function Home() {
             <div>
               <div className="judul-kecil">04 · Struktur pendanaan utama</div>
               <h2>Tanpa utang bank.<br/><em>Modal investor.</em></h2>
-              <p className="pengantar">Skenario utama presentasi sekarang menempatkan pembiayaan proyek sebagai 100% modal pemegang saham: investor tunai ditambah kontribusi aset sponsor. Pinjaman bank tidak digunakan.</p>
+              <p className="pengantar">Skenario utama presentasi menggunakan 0% utang bank dan 100% modal investor. Untuk presentasi per orang, porsi dihitung langsung dari nilai investasi orang tersebut terhadap total CAPEX dasar Rp861.088.067.662.</p>
               <div className="pilihan"><a className="aktif" href="#kalkulator-investasi">BUKA KALKULATOR TANPA BANK ↓</a></div>
               <div className="komposisi"><div className="kolam" style={{'--isi':'0%'}}><b>Rp0</b><span>UTANG BANK</span></div><div className="plus">+</div><div className="kolam" style={{'--isi':'100%'}}><b>Rp861,1 M</b><span>EKUITAS / MODAL PEMEGANG SAHAM</span></div></div>
-              <div className="mini"><div><b>Rp811,1 M</b><span>KEBUTUHAN KAS DASAR DI LUAR TANAH</span></div><div><b>±Rp50,0 M</b><span>BASIS KONTRIBUSI ASET / TANAH</span></div><div><b>Rp0</b><span>BUNGA BANK</span></div><div><b>Rp0</b><span>CICILAN BANK</span></div><div><b>—</b><span>DSCR BANK TIDAK BERLAKU</span></div></div>
+              <div className="mini"><div><b>Rp861,1 M</b><span>TOTAL MODAL PROYEK · BASIS CAPEX</span></div><div><b>Rp110,7 M</b><span>ARUS KAS TAHUN 4 · SKENARIO 0% BANK</span></div><div><b>Rp0</b><span>BUNGA BANK</span></div><div><b>Rp0</b><span>CICILAN BANK</span></div><div><b>2,83x</b><span>MOIC EKUITAS MODEL TAHUN 10</span></div></div>
             </div>
             <div className="skenario">
               <div className="skenario-head"><div><span>SKENARIO UTAMA · TANPA BANK</span></div><b>0%</b></div>
-              <div className="skenario-grid"><div><span>NILAI UTANG BANK</span><b>Rp0</b></div><div><span>KEBUTUHAN KAS INVESTOR</span><b>Rp811,1 M</b></div><div><span>KONTRIBUSI ASET DASAR</span><b>±Rp50,0 M</b></div><div><span>TOTAL CAPEX DASAR</span><b>Rp861,1 M</b></div></div>
-              <div className="sinyal"><strong>Arah pembiayaan utama:</strong> proyek diupayakan tanpa utang bank agar tidak memiliki kewajiban bunga dan cicilan bank. Pembagian saham investor dan sponsor dihitung di kalkulator berdasarkan nilai investasi, porsi sponsor, kebijakan pembagian laba, dan asumsi valuasi. Skenario bank lama tetap tersedia hanya sebagai pembanding.</div>
+              <div className="skenario-grid"><div><span>NILAI UTANG BANK</span><b>Rp0</b></div><div><span>TOTAL EKUITAS / MODAL INVESTOR</span><b>Rp861,1 M</b></div><div><span>ARUS KAS TAHUN 4 · TANPA BANK</span><b>Rp110,7 M</b></div><div><span>NILAI EKUITAS KELUAR · TAHUN 10</span><b>Rp2,439 T</b></div></div>
+              <div className="sinyal"><strong>Arah pembiayaan utama:</strong> 0% utang bank. Kalkulator hanya meminta satu angka: nilai investasi orang yang sedang melihat presentasi. Porsi modal dan nilai ekuitas dihitung otomatis dari angka model terkendali.</div>
             </div>
           </div>
         </section>
@@ -234,7 +234,7 @@ export default function Home() {
         <section className="bagian penutup">
           <div className="dalam penutup-grid">
             <div><div className="judul-kecil">07 · Pembahasan investor</div><h2>Modal masuk.<br/><em>Kontrol tetap.</em></h2></div>
-            <div className="penutup-copy">Langkah berikutnya adalah menyiapkan paket investasi tanpa utang bank yang siap diuji: menutup bukti, memvalidasi kapasitas, mensertifikasi biaya proyek, lalu menyepakati valuasi, porsi sponsor, pembagian saham, dan kebijakan pembagian laba.
+            <div className="penutup-copy">Langkah berikutnya adalah menyiapkan paket investasi tanpa utang bank yang siap diuji: menutup bukti, memvalidasi kapasitas, mensertifikasi biaya proyek, lalu mengunci dokumen kepemilikan dan hak ekonomi investor.
               <div className="aksi"><button className="utama" onClick={buka3D}>{tigaDimensi?'BUKA 3D LAGI':'BUKA TAMPILAN 3D OPSIONAL'}</button><a href="#atas">ULANGI PRESENTASI ↑</a></div>
               <p className="kaki">RS Subang Raya · Presentasi investor · basis model perencanaan terkontrol ditinjau 10 September 2026.</p>
             </div>
