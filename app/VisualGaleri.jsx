@@ -23,7 +23,7 @@ export default function VisualGaleri() {
   return (
     <div className="vg-stage">
       <div className="vg-main">
-        <img key={item[0]} src={asset(item[0])} alt={item[1]} decoding="async" />
+        <img key={item[0]} src={asset(item[0])} alt={item[1]} decoding="async" loading="lazy" />
         <div className="vg-label"><div><span>{item[2]} · KONSEP</span><b>{item[1]}</b></div><strong>{String(aktif + 1).padStart(2,'0')} / {String(visual.length).padStart(2,'0')}</strong></div>
       </div>
       <div className="vg-list">
