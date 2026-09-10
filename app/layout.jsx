@@ -1,6 +1,5 @@
 import './globals.css'
 import { Layout } from '@/components/dom/Layout'
-import KalkulatorInvestasi from './KalkulatorInvestasi'
 
 export const metadata = {
   title: 'RS Subang Raya — Presentasi Investor',
@@ -12,7 +11,6 @@ export default function RootLayout({ children }) {
     <html lang="id">
       <body>
         <Layout>{children}</Layout>
-        <KalkulatorInvestasi />
       </body>
     </html>
   )
