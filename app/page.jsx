@@ -95,7 +95,7 @@ export default function Home() {
       <div className="halaman">
         <nav className="nav">
           <a className="merek" href="#atas"><b>+</b><span>RS SUBANG RAYA</span></a>
-          <div className="menu"><a href="#tesis">TESIS</a><a href="#operasi">OPERASI</a><a href="#ekonomi">EKONOMI</a><a href="#pendanaan">PENDANAAN</a><a href="#kesiapan">KESIAPAN</a><a href="#visual">VISUAL</a></div>
+          <div className="menu"><a href="#tesis">TESIS</a><a href="#operasi">OPERASI</a><a href="#ekonomi">EKONOMI</a><a href="#pendanaan">PENDANAAN</a><a href="#kalkulator-investasi">INVESTASI</a><a href="#kesiapan">KESIAPAN</a><a href="#visual">VISUAL</a></div>
         </nav>
 
         <header id="atas" className="hero">
@@ -184,10 +184,10 @@ export default function Home() {
                 <div><span>PERALATAN MEDIS TAHAP AWAL</span><b>Rp95,0 M</b><small>Anggaran indikatif; T07–T09 masih terbuka.</small></div>
                 <div><span>MODAL KERJA</span><b>Rp76,8 M</b><small>Cadangan anggaran untuk kebutuhan awal operasi.</small></div>
                 <div><span>IRR EKUITAS PROYEK DASAR</span><b>20,50%</b><small>Ilustratif dan bergantung pada kelipatan valuasi saat keluar.</small></div>
-                <div><span>DSCR MINIMUM DASAR · TAHUN 4–10</span><b>1,20x</b><small>Model arus kas dengan saldo utang menurun.</small></div>
+                <div><span>UTANG BANK · SKENARIO UTAMA</span><b>Rp0</b><small>DSCR bank tidak berlaku pada struktur utama tanpa pinjaman bank.</small></div>
               </div>
             </div>
-            <div className="pertumbuhan">{pertumbuhan.map((item) => <article className="tahun" key={item.tahun}><div className="tahun-head"><span>{item.tahun}</span><em>{item.catatan}</em></div><h3>{item.kunjungan}</h3><dl><div><dt>PENDAPATAN</dt><dd>{item.pendapatan}</dd></div><div><dt>EBITDA</dt><dd>{item.ebitda}</dd></div><div><dt>ARUS KAS UNTUK UTANG</dt><dd>{item.kas}</dd></div></dl><div className="progres"><i style={{width:`${item.progres}%`}}/></div></article>)}</div>
+            <div className="pertumbuhan">{pertumbuhan.map((item) => <article className="tahun" key={item.tahun}><div className="tahun-head"><span>{item.tahun}</span><em>{item.catatan}</em></div><h3>{item.kunjungan}</h3><dl><div><dt>PENDAPATAN</dt><dd>{item.pendapatan}</dd></div><div><dt>EBITDA</dt><dd>{item.ebitda}</dd></div><div><dt>ARUS KAS TERSEDIA</dt><dd>{item.kas}</dd></div></dl><div className="progres"><i style={{width:`${item.progres}%`}}/></div></article>)}</div>
           </div>
         </section>
 
@@ -234,7 +234,7 @@ export default function Home() {
         <section className="bagian penutup">
           <div className="dalam penutup-grid">
             <div><div className="judul-kecil">07 · Pembahasan investor</div><h2>Modal masuk.<br/><em>Kontrol tetap.</em></h2></div>
-            <div className="penutup-copy">Langkah berikutnya adalah mengubah anggaran indikatif yang transparan menjadi paket investasi yang siap diuji: menutup bukti, memvalidasi kapasitas, mensertifikasi biaya proyek, lalu mengunci struktur modal.
+            <div className="penutup-copy">Langkah berikutnya adalah menyiapkan paket investasi tanpa utang bank yang siap diuji: menutup bukti, memvalidasi kapasitas, mensertifikasi biaya proyek, lalu menyepakati valuasi, porsi sponsor, pembagian saham, dan kebijakan pembagian laba.
               <div className="aksi"><button className="utama" onClick={buka3D}>{tigaDimensi?'BUKA 3D LAGI':'BUKA TAMPILAN 3D OPSIONAL'}</button><a href="#atas">ULANGI PRESENTASI ↑</a></div>
               <p className="kaki">RS Subang Raya · Presentasi investor · basis model perencanaan terkontrol ditinjau 10 September 2026.</p>
             </div>
