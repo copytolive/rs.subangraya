@@ -1,9 +1,10 @@
 import './globals.css'
 import { Layout } from '@/components/dom/Layout'
+import KalkulatorInvestasi from './KalkulatorInvestasi'
 
 export const metadata = {
   title: 'RS Subang Raya — Presentasi Investor',
-  description: 'Presentasi investor interaktif RS Subang Raya: skala proyek, anggaran indikatif, skenario pendanaan, kesiapan proyek, pengendalian risiko, dan pengalaman konsep.',
+  description: 'Presentasi investor interaktif RS Subang Raya: skala proyek, anggaran indikatif, skenario pendanaan, kalkulator saham dan keuntungan, kesiapan proyek, pengendalian risiko, dan pengalaman konsep.',
 }
 
 export default function RootLayout({ children }) {
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="id">
       <body>
         <Layout>{children}</Layout>
+        <KalkulatorInvestasi />
       </body>
     </html>
   )
