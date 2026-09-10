@@ -2,8 +2,8 @@ import './globals.css'
 import { Layout } from '@/components/dom/Layout'
 
 export const metadata = {
-  title: 'RS Subang Raya — Investor Presentation',
-  description: 'Interactive investor presentation for RS Subang Raya: project scale, budgetary economics, funding sensitivities, readiness controls, and concept experience.',
+  title: 'RS Subang Raya — Presentasi Investor',
+  description: 'Presentasi investor interaktif RS Subang Raya: skala proyek, ekonomi budgetary, sensitivitas pendanaan, kontrol kesiapan, dan pengalaman konsep.',
 }
 
 export default function RootLayout({ children }) {
