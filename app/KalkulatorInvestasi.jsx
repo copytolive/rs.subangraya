@@ -29,7 +29,7 @@ export default function KalkulatorInvestasi() {
   const kenaikan = nilaiAkhir - investasi
   return (
     <>
-      <button type="button" className="tombol-kalkulator" onClick={() => { document.getElementById('kalkulator-investasi')?.scrollIntoView({ behavior: 'smooth' }); window.history.replaceState(null, '', '/rs.subangraya/') }}>HITUNG INVESTASI</button>
+      <button type="button" className="tombol-kalkulator" onClick={() => { document.getElementById('kalkulator-investasi')?.scrollIntoView({ behavior: 'smooth' }); window.history.replaceState(null, '', '/rs.subangraya') }}>HITUNG INVESTASI</button>
       <section id="kalkulator-investasi" className="ki">
         <style>{`
           .tombol-kalkulator{position:fixed;right:12px;bottom:12px;z-index:95;background:#f4c842;color:#060a0d!important;border:0;border-radius:999px;padding:9px 13px;font:900 8px/1 Inter,system-ui;letter-spacing:.09em;cursor:pointer}

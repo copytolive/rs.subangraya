@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react'
 
-const BASE_PATH = '/rs.subangraya/'
+const BASE_PATH = '/rs.subangraya'
 
 function bersihkanUrl() {
   if (typeof window === 'undefined') return
-  if (window.location.pathname === BASE_PATH && (window.location.hash || window.location.search)) {
+  if ((window.location.pathname === BASE_PATH || window.location.pathname === `${BASE_PATH}/`) && (window.location.hash || window.location.search || window.location.pathname !== BASE_PATH)) {
     window.history.replaceState(null, '', BASE_PATH)
   }
 }
